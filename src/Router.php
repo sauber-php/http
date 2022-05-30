@@ -22,7 +22,7 @@ final class Router implements RequestHandlerInterface, MiddlewareAwareInterface
     use RouteCollectionTrait;
     use MiddlewareAwareTrait;
 
-    private readonly LeagueRouter $baseRouter;
+    private readonly LeagueRouter $leagueRouter;
 
     /**
      * @param ContainerInterface $container
@@ -37,8 +37,8 @@ final class Router implements RequestHandlerInterface, MiddlewareAwareInterface
             container: $container,
         );
 
-        $this->baseRouter = new LeagueRouter();
-        $this->baseRouter->setStrategy(
+        $this->leagueRouter = new LeagueRouter();
+        $this->leagueRouter->setStrategy(
             strategy: $responseStrategy,
         );
     }
@@ -51,7 +51,7 @@ final class Router implements RequestHandlerInterface, MiddlewareAwareInterface
      */
     public function map(string $method, string $path, mixed $handler): Route
     {
-        return $this->baseRouter->map(
+        return $this->leagueRouter->map(
             method: $method,
             path: $path,
             handler: $handler,
@@ -64,7 +64,7 @@ final class Router implements RequestHandlerInterface, MiddlewareAwareInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->baseRouter->dispatch(
+        return $this->leagueRouter->dispatch(
             request: $request,
         );
     }
