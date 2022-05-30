@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 use JustSteveKing\StatusCode\Http;
 use Laminas\Diactoros\ServerRequestFactory;
+use Psr\Http\Message\ResponseInterface;
+use Sauber\Http\Middleware\TrimStrings;
 use Sauber\Http\Router;
 use Sauber\Http\Tests\Fixtures\Container;
+use Sauber\Http\Tests\Fixtures\DummyRequestHandler;
 
 it('can dispatch closures', function () {
     $router = new Router(

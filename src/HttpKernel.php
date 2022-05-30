@@ -24,7 +24,7 @@ final class HttpKernel
      * @param RequestHandlerInterface $requestHandler
      * @return HttpKernel
      */
-    public static function using(RequestHandlerInterface $requestHandler): self
+    public static function router(RequestHandlerInterface $requestHandler): self
     {
         return new self(
             requestHandler: $requestHandler,
